@@ -1,6 +1,6 @@
 package com.teachmeskills.lesson14;
-import com.teachmeskills.lesson14.service.Logger;
-import com.teachmeskills.lesson14.service.ValidDocNumber;
+import com.teachmeskills.lesson14.tools.Logger;
+import com.teachmeskills.lesson14.service.DocumentArrayService;
 import java.util.Date;
 import java.util.Scanner;
 /**There is a file with document numbers.
@@ -27,7 +27,7 @@ public class Runner {
         Logger.logInfo(new Date(), "-> Reading file path via console.\n");
 
         try {
-            ValidDocNumber.checkDocNumber(docNumFilesPath);
+            DocumentArrayService.checkDocNumber(docNumFilesPath);
         } catch (Exception e) {
             Logger.logErrorInfo(new Date(), " -> Unexpected error.\n");
         }
