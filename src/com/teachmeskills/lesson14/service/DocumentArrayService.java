@@ -13,20 +13,16 @@ public class DocumentArrayService {
 
     public static void checkDocNumber (String path) throws IOException {
 
-        try (BufferedReader reader = Files.newBufferedReader(Paths.get(path))) {
+        String[] doc = Files.readString(Paths.get(path)).split("\n");
 
-            String[] doc = Files.readString(Paths.get(path)).split("\n");
-
-            for (String num : doc) {
-                try{
-                    DocumentNameValidationService.checkDocNumber(num);
-                } catch (WrongDocNameException e) {
-                    Logger.logErrorInfo(new Date(), e.getMessage());
-                }
+        for (String num : doc) {
+            try {
+                DocumentNameValidationService.checkDocNumber(num);
+            } catch (WrongDocNameException e) {
+                Logger.logErrorInfo(new Date(), e.getMessage());
+            } catch (IOException e) {
+                Logger.logErrorInfo(new Date(), " -> Unexpected error.\n");
             }
-
-        } catch (IOException e){
-            Logger.logErrorInfo(new Date()," -> Unexpected error.\n");
         }
     }
 
